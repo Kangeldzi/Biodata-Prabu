@@ -22,12 +22,12 @@
             background-attachment: fixed;
         }
 
-        /* GRID UTAMA - selalu 2 kolom */
+        /* GRID UTAMA - selalu 2 kolom untuk foto, alamat melintang */
         .royal-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1rem;
-            max-width: 900px;
+            max-width: 1000px;
             width: 100%;
             padding: 1.5rem 1rem;
             background: rgba(255, 255, 255, 0.3);
@@ -39,46 +39,44 @@
             animation: fadeScale 1.2s cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
         }
 
-        /* CARD dengan gradasi biru muda - diam secara default */
-        .card {
+        /* CARD FOTO - untuk foto ayah/ibu */
+        .photo-card {
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            padding: 20px 8px 20px 8px;
+            padding: 20px 12px 20px 12px;
             background: linear-gradient(145deg, rgba(255, 255, 255, 0.7), rgba(200, 225, 255, 0.8));
             border-radius: 40px 40px 30px 30px;
             border: 1px solid rgba(173, 216, 255, 0.6);
             box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(173, 216, 255, 0.4) inset;
             backdrop-filter: blur(5px);
             transition: all 0.4s ease;
-            /* tidak ada animasi default */
             transform: translateY(0);
+            height: 100%;
         }
 
         /* ANIMASI MELAYANG HANYA SAAT HOVER */
-        .card:hover {
+        .photo-card:hover {
             animation: floatHover 1.5s infinite alternate ease-in-out;
             border-color: #7ec8ff;
             box-shadow: 0 35px 40px -8px rgba(0, 0, 0, 0.2), 0 0 30px 5px #b0e0ff, inset 0 0 30px #c9e9ff;
         }
 
-        /* efek hover tambahan */
-        .card:hover .frame {
+        .photo-card:hover .frame {
             transform: scale(1.02);
             box-shadow: 0 0 0 3px rgba(126, 200, 255, 0.8), 0 20px 30px rgba(0,0,0,0.2), inset 0 5px 20px #ffffff;
         }
 
-        .card:hover .photo {
+        .photo-card:hover .photo {
             transform: scale(1.02);
             border-color: #9acdff;
             filter: brightness(1.05) saturate(1.1);
             box-shadow: 0 0 40px #b0e0ff;
         }
 
-        .card:hover .name {
+        .photo-card:hover .name {
             text-shadow: 0 0 20px #7ec8ff, 0 0 40px #b0e0ff;
-            letter-spacing: 3px;
         }
 
         /* FRAME dengan gradasi biru muda */
@@ -91,7 +89,6 @@
             box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.9), 0 15px 25px rgba(0,0,0,0.1), inset 0 5px 15px #ffffff;
             margin-bottom: 12px;
             transition: all 0.4s ease;
-            /* tidak ada animasi rotasi default */
         }
 
         /* efek bingkai berkilau biru muda */
@@ -123,9 +120,9 @@
 
         /* nama teks dengan gradasi biru muda */
         .name {
-            font-size: clamp(1.2rem, 5vw, 2rem);
+            font-size: clamp(0.9rem, 3.5vw, 1.3rem);
             font-weight: 600;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             background: linear-gradient(135deg, #4a7db5, #2d5f9e, #1a4a80);
             -webkit-background-clip: text;
@@ -150,13 +147,13 @@
             background-clip: text;
             color: transparent;
             text-shadow: 0 0 15px #b0e0ff, 0 0 40px #7ec8ff;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             animation: glowPulse 3s infinite alternate;
         }
 
-        /* role (ayah/ibu) dengan aksen biru muda */
+        /* role (ayah/ibu) */
         .role {
-            font-size: clamp(0.8rem, 3.5vw, 1.2rem);
+            font-size: clamp(0.8rem, 3.5vw, 1.1rem);
             font-weight: 300;
             color: #1e4f8a;
             text-shadow: 0 0 10px #ffffff;
@@ -170,27 +167,69 @@
             white-space: nowrap;
         }
 
-        /* gelar tambahan dengan warna biru muda */
+        /* gelar tambahan */
         .sub-title {
             color: #1e4f8a;
-            font-size: clamp(0.65rem, 2.8vw, 0.9rem);
+            font-size: clamp(0.6rem, 2.5vw, 0.8rem);
             letter-spacing: 2px;
             margin-top: 4px;
             white-space: nowrap;
             text-shadow: 0 0 8px #ffffff;
+            opacity: 0.9;
+        }
+
+        /* ALAMAT CARD - melintang di bawah kedua foto (tanpa border pada teks) */
+        .address-card {
+            grid-column: 1 / -1;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.5), rgba(200, 225, 255, 0.6));
+            border-radius: 30px;
+            backdrop-filter: blur(5px);
+            padding: 20px 20px;
+            margin-top: 15px;
+            transition: all 0.4s ease;
+            text-align: center;
+            border: none; /* tanpa border */
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); /* shadow lembut */
+        }
+
+        .address-card:hover {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.7), rgba(200, 225, 255, 0.8));
+            box-shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.15), 0 0 30px 5px #b0e0ff;
+            transform: translateY(-3px);
+        }
+
+        /* Teks alamat - TANPA BORDER */
+        .address-text {
+            font-size: clamp(0.9rem, 3.2vw, 1.2rem);
+            color: #1a3f6a;
+            font-weight: 500;
+            line-height: 1.7;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 8px rgba(255, 255, 255, 0.8);
+        }
+
+        /* span dalam alamat - TANPA BORDER */
+        .address-text span {
+            display: inline-block;
+            margin: 0 3px;
+            /* tanpa border, tanpa background, tanpa backdrop-filter */
+        }
+
+        .address-icon {
+            font-size: 1.5rem;
+            margin-right: 5px;
+            filter: drop-shadow(0 2px 5px #7ec8ff);
+            display: inline-block;
+            vertical-align: middle;
         }
 
         /* ANIMASI KHUSUS HOVER - melayang */
         @keyframes floatHover {
-            0% {
-                transform: translateY(0px);
-            }
-            100% {
-                transform: translateY(-15px);
-            }
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-15px); }
         }
 
-        /* animasi untuk judul (tetap berjalan) */
+        /* animasi untuk judul */
         @keyframes glowPulse {
             0% { text-shadow: 0 0 15px #7ec8ff, 0 0 30px #b0e0ff; }
             100% { text-shadow: 0 0 30px #b0e0ff, 0 0 70px #ffffff; }
@@ -208,8 +247,8 @@
                 padding: 1rem 0.5rem;
             }
             
-            .card {
-                padding: 15px 4px;
+            .photo-card {
+                padding: 15px 8px;
             }
             
             .frame {
@@ -219,7 +258,7 @@
             }
             
             .name {
-                font-size: clamp(1rem, 4vw, 1.5rem);
+                font-size: clamp(0.8rem, 3.5vw, 1.1rem);
                 letter-spacing: 1px;
             }
             
@@ -229,8 +268,18 @@
             }
             
             .sub-title {
-                font-size: 0.6rem;
+                font-size: 0.55rem;
                 letter-spacing: 1px;
+            }
+
+            .address-card {
+                padding: 15px 12px;
+                margin-top: 10px;
+            }
+
+            .address-text {
+                font-size: clamp(0.75rem, 3vw, 0.95rem);
+                line-height: 1.5;
             }
         }
 
@@ -241,7 +290,15 @@
             }
             
             .name {
-                font-size: 0.9rem;
+                font-size: 0.75rem;
+            }
+
+            .address-text {
+                font-size: 0.7rem;
+            }
+            
+            .address-icon {
+                font-size: 1.2rem;
             }
         }
 
@@ -266,11 +323,11 @@
         <!-- Judul Utama -->
         <div class="main-title">KEDUA ORANG TUA</div>
 
-        <!-- Card Ayah -->
-        <div class="card">
+        <!-- Card Foto Ayah -->
+        <div class="photo-card">
             <div class="role">Sang Pelindung</div>
             <div class="frame">
-                <!-- Foto Ayah dengan fallback -->
+                <!-- Foto Ayah -->
                 <img class="photo" 
                      src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEitHwKW04cRgPXw3b8d7SBgwklv_0jmxB-cAiU3m_kPBMh459fH74hQ9O4xp3evk1E44AUsPu08yFElOe40HlvY1ouC4QDsdu2GI-IM5Jm5gXhtwOA5lQEGba2eAEX1kAV4XeG9HpUN-ouz3fn-7rzinxdhjk3GD9a8c5-FHqY0WXVwXff1ftHS4NHwRZo/s1280/1000577072.png" 
                      alt="Foto Ayah" 
@@ -280,11 +337,11 @@
             <div class="sub-title">◈ DEWAN PELINDUNG ◈</div>
         </div>
 
-        <!-- Card Ibu -->
-        <div class="card">
+        <!-- Card Foto Ibu -->
+        <div class="photo-card">
             <div class="role">Sang Permaisuri</div>
             <div class="frame">
-                <!-- Foto Ibu dengan fallback -->
+                <!-- Foto Ibu -->
                 <img class="photo" 
                      src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi4wSuFVaLNG2lHxd-QIDeJD3aSix6rj5nbKVvU8-BI9r2tdoOwAIAegLmImEO2LpU_EugMJIBkYpl08ICFFqO4NzhZN8WYHN-1f2uBGyRgx-e8LpQcvb0gr-1ExbhYC_ibdBIZJVBCP7lPNd_5wosrGRwAFKylgiPW97urP7OHyh9ue2We4vuFYhsstjM/s320/1000683978.jpg" 
                      alt="Foto Ibu" 
@@ -292,6 +349,15 @@
             </div>
             <div class="name">Ayu Sapuroh</div>
             <div class="sub-title">◈ PERMAISURI ◈</div>
+        </div>
+
+        <!-- ALAMAT CARD - melintang di bawah kedua foto TANPA BORDER PADA TEKS -->
+        <div class="address-card">
+            <div class="address-text">
+                <span class="address-icon">📍</span> 
+                Kp. Sawah Rt. 002 Rw. 06, Desa Gunung Menyan, 
+                Kecamatan Pamijahan, Kabupaten Bogor, Kode POS 16810
+            </div>
         </div>
     </div>
 
